@@ -1,0 +1,646 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IT Консультант - Системный анализ, администрирование, разработка</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                colors: {
+                    'primary': '#0066CC',
+                    'primary-dark': '#0052A3',
+                    'primary-light': '#E6F0FF',
+                    'accent': '#FF6B35',
+                    'text-dark': '#1F2937',
+                    'text-light': '#6B7280',
+                    'border': '#E5E7EB',
+                    'bg-light': '#F9FAFB',
+                }
+            }
+        }
+    </script>
+    <style>
+        :root {
+            --primary: #0066CC;
+            --primary-dark: #0052A3;
+            --primary-light: #E6F0FF;
+            --accent: #FF6B35;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            color: #1F2937;
+        }
+        
+        .btn-primary {
+            @apply px-6 py-3 bg-blue-600 text-white rounded-lg font-medium hover:bg-blue-700 transition;
+        }
+        
+        .btn-secondary {
+            @apply px-6 py-3 border-2 border-blue-600 text-blue-600 rounded-lg font-medium hover:bg-blue-50 transition;
+        }
+        
+        .nav-link {
+            @apply text-gray-700 hover:text-blue-600 transition px-4 py-2;
+        }
+        
+        .nav-link.active {
+            @apply text-blue-600 border-b-2 border-blue-600;
+        }
+        
+        .section {
+            @apply py-20 px-6;
+        }
+        
+        .container-main {
+            @apply max-w-6xl mx-auto;
+        }
+        
+        .card {
+            @apply bg-white border border-gray-200 rounded-xl p-8 hover:shadow-lg transition;
+        }
+        
+        .card-project {
+            @apply bg-white border border-gray-200 rounded-xl overflow-hidden hover:shadow-xl transition;
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #0066CC, #0052A3);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        
+        .badge {
+            @apply inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium;
+        }
+        
+        .tech-badge {
+            @apply inline-block px-2 py-1 bg-gray-100 text-gray-700 rounded text-xs font-medium;
+        }
+        
+        .hero-section {
+            background: linear-gradient(135deg, #F9FAFB 0%, #E6F0FF 100%);
+        }
+        
+        .fade-in {
+            animation: fadeIn 0.8s ease-in;
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-white">
+    <div id="app">
+        <!-- Header/Navigation -->
+        <header class="fixed top-0 w-full bg-white shadow-md z-50">
+            <nav class="container-main flex justify-between items-center py-4">
+                <div class="flex items-center gap-2">
+                    <div class="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
+                        IT
+                    </div>
+                    <span class="font-bold text-gray-900 text-lg">IT Консультант</span>
+                </div>
+                
+                <div class="hidden md:flex gap-2">
+                    <a href="#about" class="nav-link">Обо мне</a>
+                    <a href="#services" class="nav-link">Услуги</a>
+                    <a href="#projects" class="nav-link">Проекты</a>
+                    <a href="#blog" class="nav-link">Блог</a>
+                    <a href="#testimonials" class="nav-link">Отзывы</a>
+                    <a href="#contact" class="nav-link">Контакты</a>
+                </div>
+                
+                <button class="btn-primary text-sm">Связаться</button>
+            </nav>
+        </header>
+
+        <!-- Hero Section -->
+        <section class="hero-section pt-32 pb-16">
+            <div class="container-main">
+                <div class="grid md:grid-cols-2 gap-12 items-center">
+                    <div class="fade-in">
+                        <h1 class="text-5xl font-bold text-gray-900 mb-6">
+                            Системный анализ, администрирование и <span class="gradient-text">веб-разработка</span>
+                        </h1>
+                        <p class="text-xl text-gray-600 mb-8">
+                            20+ лет опыта в IT. Помогу вашей компании оптимизировать процессы, настроить инфраструктуру и внедрить современные решения.
+                        </p>
+                        <div class="flex gap-4 flex-wrap">
+                            <button class="btn-primary">Заказать консультацию</button>
+                            <button class="btn-secondary">Узнать больше</button>
+                        </div>
+                    </div>
+                    <div class="hidden md:block">
+                        <div class="bg-gradient-to-br from-blue-100 to-blue-50 rounded-2xl p-12 h-96 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-6xl mb-4">💼</div>
+                                <p class="text-gray-600 text-lg">20+ лет в IT индустрии</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="section bg-white">
+            <div class="container-main">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Обо мне</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl">Специалист с 20+ летним опытом в информационных технологиях</p>
+                
+                <div class="grid md:grid-cols-3 gap-8 mb-12">
+                    <div class="card">
+                        <div class="text-4xl mb-4">🖥️</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Системное администрирование</h3>
+                        <p class="text-gray-600">Windows, Linux, FreeBSD серверы. Настройка, оптимизация и безопасность инфраструктуры.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="text-4xl mb-4">📞</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Телекоммуникации</h3>
+                        <p class="text-gray-600">Опыт с АТС Siemens, Panasonic. Видеонаблюдение и телефонные системы для предприятий.</p>
+                    </div>
+                    
+                    <div class="card">
+                        <div class="text-4xl mb-4">🏢</div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Системная интеграция</h3>
+                        <p class="text-gray-600">Внедрение 1С в торговле, бухгалтерии, производстве и сельском хозяйстве.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-blue-50 border-l-4 border-blue-600 p-8 rounded-lg">
+                    <h3 class="text-2xl font-bold text-gray-900 mb-4">Мой опыт охватывает:</h3>
+                    <div class="grid md:grid-cols-2 gap-4">
+                        <ul class="space-y-2 text-gray-700">
+                            <li>✓ Настройка серверов (Windows, Linux, FreeBSD)</li>
+                            <li>✓ Видеонаблюдение и безопасность</li>
+                            <li>✓ АТС и телефонные системы</li>
+                            <li>✓ Системная интеграция</li>
+                        </ul>
+                        <ul class="space-y-2 text-gray-700">
+                            <li>✓ 1С интеграция и автоматизация</li>
+                            <li>✓ Облачные решения</li>
+                            <li>✓ Системный анализ</li>
+                            <li>✓ Web-разработка</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="services" class="section bg-gray-50">
+            <div class="container-main">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Услуги</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl">Комплексные решения для развития вашего бизнеса</p>
+                
+                <div class="grid md:grid-cols-2 gap-8">
+                    <!-- Service 1: Consulting -->
+                    <div class="card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-2xl">🔍</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Системный анализ & Консультации</h3>
+                        <p class="text-gray-600 mb-4">
+                            Анализ ваших бизнес-процессов, определение потребностей в IT решениях и разработка стратегии цифровой трансформации.
+                        </p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p>✓ Аудит текущей инфраструктуры</p>
+                            <p>✓ Разработка IT стратегии</p>
+                            <p>✓ Оптимизация процессов</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 2: Server Setup -->
+                    <div class="card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-2xl">⚙️</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Настройка серверов</h3>
+                        <p class="text-gray-600 mb-4">
+                            Развертывание и настройка серверов как в облаке (AWS, Azure, Google Cloud) так и в локальной инфраструктуре.
+                        </p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p>✓ Облачные решения</p>
+                            <p>✓ Локальные серверы</p>
+                            <p>✓ Безопасность и резервное копирование</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 3: 1C Implementation -->
+                    <div class="card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-2xl">📊</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Внедрение 1С</h3>
+                        <p class="text-gray-600 mb-4">
+                            Полный цикл внедрения 1С для управления торговлей, бухгалтерией, производством и другими бизнес-процессами.
+                        </p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p>✓ Торговля и розница</p>
+                            <p>✓ Бухгалтерия</p>
+                            <p>✓ Производство и сельское хозяйство</p>
+                        </div>
+                    </div>
+
+                    <!-- Service 4: Web Development -->
+                    <div class="card">
+                        <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <span class="text-2xl">💻</span>
+                        </div>
+                        <h3 class="text-2xl font-bold text-gray-900 mb-3">Web-разработка</h3>
+                        <p class="text-gray-600 mb-4">
+                            Разработка веб-приложений с использованием современных технологий (React, FastAPI, Django).
+                        </p>
+                        <div class="space-y-2 text-sm text-gray-700">
+                            <p>✓ Frontend (React, TypeScript)</p>
+                            <p>✓ Backend (FastAPI, Django)</p>
+                            <p>✓ Полный цикл разработки</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="section bg-white">
+            <div class="container-main">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Проекты</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl">Примеры реализованных решений</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <!-- Project 1: Telecom Billing -->
+                    <div class="card-project">
+                        <div class="bg-blue-600 h-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-5xl mb-2">📱</div>
+                                <p class="text-white font-semibold">Телеком биллинг</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Мини биллинг система</h3>
+                            <p class="text-gray-600 mb-4">
+                                Система биллинга для МикроТик маршрутизаторов. Автоматизация расчетов и управления пользователями.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">FastAPI</span>
+                                <span class="tech-badge">PostgreSQL</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Сфера: Телекоммуникации</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 2: Services Management -->
+                    <div class="card-project">
+                        <div class="bg-green-600 h-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-5xl mb-2">🛠️</div>
+                                <p class="text-white font-semibold">Управление услугами</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">Платформа управления сервисами</h3>
+                            <p class="text-gray-600 mb-4">
+                                Решение для управления проектами и услугами. Отслеживание статусов, управление командой и клиентами.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge">Django</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">MySQL</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Сфера: Услуги (B2B)</p>
+                        </div>
+                    </div>
+
+                    <!-- Project 3: B2B Trading -->
+                    <div class="card-project">
+                        <div class="bg-orange-600 h-40 flex items-center justify-center">
+                            <div class="text-center">
+                                <div class="text-5xl mb-2">🛒</div>
+                                <p class="text-white font-semibold">B2B торговля</p>
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="text-xl font-bold text-gray-900 mb-2">B2B торговая платформа</h3>
+                            <p class="text-gray-600 mb-4">
+                                Платформа для оптовой торговли с функциями каталога, управления заказами и интеграцией с 1С.
+                            </p>
+                            <div class="flex flex-wrap gap-2 mb-4">
+                                <span class="tech-badge">Python</span>
+                                <span class="tech-badge">React</span>
+                                <span class="tech-badge">1С API</span>
+                            </div>
+                            <p class="text-sm text-gray-500">Сфера: Торговля (B2B)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Blog Section -->
+        <section id="blog" class="section bg-gray-50">
+            <div class="container-main">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Блог</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl">Статьи о технологиях, лучших практиках и кейсы</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <article class="card">
+                        <div class="mb-4 pb-4 border-b border-gray-200">
+                            <span class="badge">Системный анализ</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">Как оптимизировать IT инфраструктуру компании</h3>
+                        <p class="text-gray-600 mb-4">Практические советы по аудиту и улучшению вашей IT инфраструктуры...</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                            <span class="text-sm text-gray-500">5 мин чтения</span>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-700">Читать →</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="mb-4 pb-4 border-b border-gray-200">
+                            <span class="badge">Внедрение 1С</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">1С внедрение: правильный подход</h3>
+                        <p class="text-gray-600 mb-4">Ошибки которых стоит избежать при внедрении 1С в вашей компании...</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                            <span class="text-sm text-gray-500">7 мин чтения</span>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-700">Читать →</a>
+                        </div>
+                    </article>
+
+                    <article class="card">
+                        <div class="mb-4 pb-4 border-b border-gray-200">
+                            <span class="badge">Web разработка</span>
+                        </div>
+                        <h3 class="text-xl font-bold text-gray-900 mb-3">React + TypeScript: лучшие практики</h3>
+                        <p class="text-gray-600 mb-4">Как писать чистый и масштабируемый код на React с использованием TypeScript...</p>
+                        <div class="flex items-center justify-between pt-4 border-t border-gray-200">
+                            <span class="text-sm text-gray-500">8 мин чтения</span>
+                            <a href="#" class="text-blue-600 font-medium hover:text-blue-700">Читать →</a>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section id="testimonials" class="section bg-white">
+            <div class="container-main">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Отзывы клиентов</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl">Что говорят мои клиенты</p>
+                
+                <div class="grid md:grid-cols-3 gap-8">
+                    <div class="card">
+                        <div class="flex gap-1 mb-4">
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            "Отличный специалист! Помог нам настроить всю инфраструктуру и внедрить 1С. Профессиональный подход и четкое выполнение всех сроков."
+                        </p>
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="font-semibold text-gray-900">Иван Петров</p>
+                            <p class="text-sm text-gray-600">Директор, ООО "Спецторг"</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex gap-1 mb-4">
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            "Квалифицированный анализ нашей системы и четкие рекомендации. Экономия на инфраструктуре получилась значительной."
+                        </p>
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="font-semibold text-gray-900">Мария Сидорова</p>
+                            <p class="text-sm text-gray-600">Финансовый директор, "МегаТек"</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="flex gap-1 mb-4">
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                            <span class="text-yellow-400">⭐</span>
+                        </div>
+                        <p class="text-gray-700 mb-4">
+                            "Помощь с веб-приложением была крайне полезна. Сразу видно, что работаешь с опытным разработчиком."
+                        </p>
+                        <div class="pt-4 border-t border-gray-200">
+                            <p class="font-semibold text-gray-900">Алексей Миронов</p>
+                            <p class="text-sm text-gray-600">CEO, "СофтСолюшнз"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="section bg-gradient-to-br from-blue-50 to-blue-100">
+            <div class="container-main">
+                <h2 class="text-4xl font-bold text-gray-900 mb-4">Давайте свяжемся</h2>
+                <p class="text-lg text-gray-600 mb-12 max-w-3xl">Готов помочь вашему проекту. Заполните форму или свяжитесь со мной напрямую</p>
+                
+                <div class="grid md:grid-cols-2 gap-12">
+                    <!-- Contact Form -->
+                    <div class="bg-white rounded-xl p-8 border border-gray-200">
+                        <h3 class="text-2xl font-bold text-gray-900 mb-6">Форма обратной связи</h3>
+                        <form id="contactForm" class="space-y-4">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-900 mb-2">Ваше имя</label>
+                                <input type="text" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="Иван Петров" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-900 mb-2">Email</label>
+                                <input type="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="ivan@example.com" required>
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-900 mb-2">Телефон</label>
+                                <input type="tel" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none" placeholder="+7 (999) 123-45-67">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-900 mb-2">Сообщение</label>
+                                <textarea class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none h-32" placeholder="Расскажите о вашем проекте..." required></textarea>
+                            </div>
+                            <button type="submit" class="w-full btn-primary text-center">Отправить</button>
+                        </form>
+                    </div>
+
+                    <!-- Contact Info -->
+                    <div class="space-y-8">
+                        <div class="bg-white rounded-xl p-8 border border-gray-200">
+                            <h3 class="text-2xl font-bold text-gray-900 mb-6">Контакты</h3>
+                            
+                            <div class="space-y-6">
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <span class="text-xl">✉️</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Email</p>
+                                        <a href="mailto:contact@example.com" class="text-blue-600 font-medium hover:text-blue-700">contact@example.com</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <span class="text-xl">📱</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Телефон</p>
+                                        <a href="tel:+79991234567" class="text-blue-600 font-medium hover:text-blue-700">+7 (999) 123-45-67</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <span class="text-xl">💬</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">Telegram</p>
+                                        <a href="https://t.me/yourusername" class="text-blue-600 font-medium hover:text-blue-700">@yourusername</a>
+                                    </div>
+                                </div>
+
+                                <div class="flex gap-4">
+                                    <div class="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                                        <span class="text-xl">💼</span>
+                                    </div>
+                                    <div>
+                                        <p class="text-sm text-gray-600">LinkedIn</p>
+                                        <a href="https://linkedin.com/in/yourprofile" class="text-blue-600 font-medium hover:text-blue-700">linkedin.com/in/yourprofile</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="bg-blue-600 text-white rounded-xl p-8">
+                            <h4 class="text-lg font-bold mb-3">Время ответа</h4>
+                            <p class="text-blue-100 mb-4">Обычно отвечаю в течение 24 часов</p>
+                            <p class="text-sm text-blue-100">Наиболее активен в будни с 10:00 до 18:00 (UTC+3)</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Footer -->
+        <footer class="bg-gray-900 text-gray-300 py-12">
+            <div class="container-main">
+                <div class="grid md:grid-cols-4 gap-8 mb-8">
+                    <div>
+                        <div class="flex items-center gap-2 mb-4">
+                            <div class="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
+                                IT
+                            </div>
+                            <span class="font-bold text-white">IT Консультант</span>
+                        </div>
+                        <p class="text-sm">20+ лет опыта в информационных технологиях</p>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-white mb-4">Навигация</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#about" class="hover:text-white transition">Обо мне</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Услуги</a></li>
+                            <li><a href="#projects" class="hover:text-white transition">Проекты</a></li>
+                            <li><a href="#blog" class="hover:text-white transition">Блог</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-white mb-4">Услуги</h4>
+                        <ul class="space-y-2 text-sm">
+                            <li><a href="#services" class="hover:text-white transition">Системный анализ</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Настройка серверов</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Внедрение 1С</a></li>
+                            <li><a href="#services" class="hover:text-white transition">Web-разработка</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div>
+                        <h4 class="font-semibold text-white mb-4">Социальные сети</h4>
+                        <div class="flex gap-4 text-sm">
+                            <a href="#" class="hover:text-white transition">LinkedIn</a>
+                            <a href="#" class="hover:text-white transition">Telegram</a>
+                            <a href="#" class="hover:text-white transition">GitHub</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="border-t border-gray-800 pt-8">
+                    <p class="text-sm text-center text-gray-400">
+                        &copy; 2024 IT Консультант. Все права защищены.
+                    </p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
+            this.reset();
+        });
+
+        // Navigation highlight on scroll
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (window.pageYOffset >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+    </script>
+</body>
+</html>
