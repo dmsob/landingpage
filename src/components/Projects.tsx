@@ -12,13 +12,11 @@ export default function Projects() {
         <div className="grid md:grid-cols-3 gap-8">
           {projects.map((project) => (
             <div key={project.id} className="card-project">
-              <div className={`${project.bgColor} h-40 flex items-center justify-center`}>
-                <div className="text-center">
-                  <div className="text-5xl mb-2">{project.icon}</div>
-                  <p className="text-white font-semibold">{project.category}</p>
-                </div>
-              </div>
               <div className="p-6">
+                <div className="text-center mb-4">
+                  <div className="text-5xl mb-2">{project.icon}</div>
+                  <p className="text-gray-600 font-semibold">{project.category}</p>
+                </div>
                 <h3 className="text-xl font-bold text-gray-900 mb-2">{project.title}</h3>
                 <p className="text-gray-600 mb-4">{project.description}</p>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -28,7 +26,6 @@ export default function Projects() {
                     </span>
                   ))}
                 </div>
-                <p className="text-sm text-gray-500">Сфера: {project.category}</p>
               </div>
             </div>
           ))}

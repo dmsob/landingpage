@@ -9,14 +9,16 @@ export default function Services() {
           Комплексные решения для развития вашего бизнеса
         </p>
         
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid md:grid-cols-2 gap-8 services-grid">
           {services.map((service) => (
             <div key={service.id} className="card">
-              <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                <span className="text-2xl">{service.icon}</span>
+              <div className="flex items-center gap-4 mb-4">
+                <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
+                  <span className="text-2xl">{service.icon}</span>
+                </div>
+                <h3 className="text-2xl font-bold text-gray-900">{service.title}</h3>
               </div>
-              <h3 className="text-2xl font-bold text-gray-900 mb-3">{service.title}</h3>
-              <p className="text-gray-600 mb-4">{service.description}</p>
+              <p className="text-gray-600 mb-4 text-justify">{service.description}</p>
               <div className="space-y-2 text-sm text-gray-700">
                 {service.features.map((feature, index) => (
                   <p key={index}>✓ {feature}</p>

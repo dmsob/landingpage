@@ -41,6 +41,16 @@ body {
   
   .card {
     @apply bg-white border border-gray-200 rounded-xl p-8 hover:shadow-lg transition;
+    max-width: 360px;
+  }
+  
+  .about-grid .card {
+    width: 100%;
+  }
+
+  .services-grid .card {
+    max-width: none;
+    width: 100%;
   }
   
   .card-project {
@@ -50,6 +60,7 @@ body {
   .gradient-text {
     background: linear-gradient(135deg, #0066CC, #0052A3);
     -webkit-background-clip: text;
+    background-clip: text;
     -webkit-text-fill-color: transparent;
   }
   

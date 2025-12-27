@@ -25,8 +25,8 @@ export default function About() {
           </div>
         </div>
         
-        <div className="grid md:grid-cols-3 gap-8 mb-12">
-          <div className="card">
+        <div className="flex flex-wrap justify-center gap-8 mb-12 about-grid">
+          <div className="card text-center">
             <div className="text-4xl mb-4">🖥️</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Системное администрирование</h3>
             <p className="text-gray-600">
@@ -34,7 +34,7 @@ export default function About() {
             </p>
           </div>
           
-          <div className="card">
+          <div className="card text-center">
             <div className="text-4xl mb-4">📞</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Телекоммуникации</h3>
             <p className="text-gray-600">
@@ -42,11 +42,27 @@ export default function About() {
             </p>
           </div>
           
-          <div className="card">
+          <div className="card text-center">
             <div className="text-4xl mb-4">🏢</div>
             <h3 className="text-xl font-bold text-gray-900 mb-3">Системная интеграция</h3>
             <p className="text-gray-600">
               Внедрение 1С в торговле, бухгалтерии, производстве и сельском хозяйстве.
+            </p>
+          </div>
+
+          <div className="card text-center">
+            <div className="text-4xl mb-4">📊</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Бизнес/Системный анализ</h3>
+            <p className="text-gray-600">
+              Анализ бизнес-процессов, разработка IT-стратегии и оптимизация работы компании. Выявление потребностей и предложение эффективных решений.
+            </p>
+          </div>
+
+          <div className="card text-center">
+            <div className="text-4xl mb-4">💻</div>
+            <h3 className="text-xl font-bold text-gray-900 mb-3">Web-разработка</h3>
+            <p className="text-gray-600">
+              Разработка веб-приложений с использованием современных технологий (React, TypeScript, FastAPI, Django). Полный цикл от проектирования до запуска.
             </p>
           </div>
         </div>
