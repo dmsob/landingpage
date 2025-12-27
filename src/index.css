@@ -68,6 +68,18 @@ body {
   .fade-in {
     animation: fadeIn 0.8s ease-in;
   }
+
+  .photo-container {
+    height: 500px;
+  }
+
+  .photo-image {
+    object-position: center 55%;
+  }
+
+  .brand-text {
+    font-size: 1.425rem;
+  }
 }
 
 @keyframes fadeIn {

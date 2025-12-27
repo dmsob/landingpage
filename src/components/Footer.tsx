@@ -1,3 +1,5 @@
+import { TelegramIcon, VKIcon, GitHubIcon } from './SocialIcons';
+
 export default function Footer() {
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, href: string) => {
     e.preventDefault();
@@ -16,10 +18,12 @@ export default function Footer() {
         <div className="grid md:grid-cols-4 gap-8 mb-8">
           <div>
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold text-sm">
-                IT
-              </div>
-              <span className="font-bold text-white">IT Консультант</span>
+              <img 
+                src="/logo.png" 
+                alt="IT Консультант - Логотип" 
+                className="h-12 w-auto object-contain"
+              />
+              <span className="font-bold text-white brand-text hidden sm:inline">IT Консультант</span>
             </div>
             <p className="text-sm">20+ лет опыта в информационных технологиях</p>
           </div>
@@ -52,15 +56,6 @@ export default function Footer() {
                   className="hover:text-white transition"
                 >
                   Проекты
-                </a>
-              </li>
-              <li>
-                <a
-                  href="#blog"
-                  onClick={(e) => handleNavClick(e, '#blog')}
-                  className="hover:text-white transition"
-                >
-                  Блог
                 </a>
               </li>
             </ul>
@@ -110,28 +105,31 @@ export default function Footer() {
           
           <div>
             <h4 className="font-semibold text-white mb-4">Социальные сети</h4>
-            <div className="flex gap-4 text-sm">
+            <div className="flex gap-4">
               <a
-                href="https://linkedin.com/in/yourprofile"
+                href="https://vk.com/dmsob"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition"
+                aria-label="ВКонтакте"
               >
-                LinkedIn
+                <VKIcon className="w-6 h-6 text-gray-300 hover:text-white transition" />
               </a>
               <a
                 href="https://t.me/yourusername"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-white transition"
+                aria-label="Telegram"
               >
-                Telegram
+                <TelegramIcon className="w-6 h-6 text-gray-300 hover:text-white transition" />
               </a>
               <a
                 href="#"
                 className="hover:text-white transition"
+                aria-label="GitHub"
               >
-                GitHub
+                <GitHubIcon className="w-6 h-6 text-gray-300 hover:text-white transition" />
               </a>
             </div>
           </div>
@@ -139,7 +137,7 @@ export default function Footer() {
         
         <div className="border-t border-gray-800 pt-8">
           <p className="text-sm text-center text-gray-400">
-            &copy; 2024 IT Консультант. Все права защищены.
+            &copy; 2026 IT Консультант. Все права защищены.
           </p>
         </div>
       </div>

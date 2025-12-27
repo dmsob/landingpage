@@ -1,4 +1,5 @@
 import { useState, FormEvent } from 'react';
+import { TelegramIcon, VKIcon } from './SocialIcons';
 
 export default function Contact() {
   const [formData, setFormData] = useState({
@@ -118,10 +119,10 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
                     <a
-                      href="mailto:contact@example.com"
+                      href="mailto:dmsob@ya.ru"
                       className="text-blue-600 font-medium hover:text-blue-700"
                     >
-                      contact@example.com
+                      dmsob@ya.ru
                     </a>
                   </div>
                 </div>
@@ -133,44 +134,44 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-gray-600">Телефон</p>
                     <a
-                      href="tel:+79991234567"
+                      href="tel:+79278959172"
                       className="text-blue-600 font-medium hover:text-blue-700"
                     >
-                      +7 (999) 123-45-67
+                      +7 (927) 895-91-72
                     </a>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">💬</span>
+                    <TelegramIcon className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
                     <p className="text-sm text-gray-600">Telegram</p>
                     <a
-                      href="https://t.me/yourusername"
+                      href="https://t.me/dmsob"
                       className="text-blue-600 font-medium hover:text-blue-700"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      @yourusername
+                      @dmsob
                     </a>
                   </div>
                 </div>
 
                 <div className="flex gap-4">
                   <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl">💼</span>
+                    <VKIcon className="w-6 h-6 text-blue-600" />
                   </div>
                   <div>
-                    <p className="text-sm text-gray-600">LinkedIn</p>
+                    <p className="text-sm text-gray-600">ВКонтакте</p>
                     <a
-                      href="https://linkedin.com/in/yourprofile"
+                      href="https://vk.com/dmsob"
                       className="text-blue-600 font-medium hover:text-blue-700"
                       target="_blank"
                       rel="noopener noreferrer"
                     >
-                      linkedin.com/in/yourprofile
+                      vk.com/dmsob
                     </a>
                   </div>
                 </div>

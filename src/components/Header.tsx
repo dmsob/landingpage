@@ -4,7 +4,6 @@ const navItems = [
   { label: 'Обо мне', href: '#about' },
   { label: 'Услуги', href: '#services' },
   { label: 'Проекты', href: '#projects' },
-  { label: 'Блог', href: '#blog' },
   { label: 'Отзывы', href: '#testimonials' },
   { label: 'Контакты', href: '#contact' },
 ];
@@ -19,7 +18,6 @@ export default function Header() {
       
       sections.forEach((section) => {
         const sectionTop = (section as HTMLElement).offsetTop;
-        const sectionHeight = section.clientHeight;
         if (window.pageYOffset >= sectionTop - 200) {
           current = section.getAttribute('id') || '';
         }
@@ -56,11 +54,13 @@ export default function Header() {
   return (
     <header className="fixed top-0 w-full bg-white shadow-md z-50">
       <nav className="container-main flex justify-between items-center py-4">
-        <div className="flex items-center gap-2">
-          <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold">
-            IT
-          </div>
-          <span className="font-bold text-gray-900 text-lg">IT Консультант</span>
+        <div className="flex items-center gap-3">
+          <img 
+            src="/logo.png" 
+            alt="IT Консультант - Логотип" 
+            className="h-16 w-auto object-contain"
+          />
+          <span className="font-bold text-gray-900 brand-text hidden sm:block">IT Консультант</span>
         </div>
         
         <div className="hidden md:flex gap-2">
