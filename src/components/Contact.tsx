@@ -8,16 +8,65 @@ export default function Contact() {
     phone: '',
     message: '',
   });
+  
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitStatus, setSubmitStatus] = useState<'idle' | 'success' | 'error'>('idle');
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  // Получаем API ключ из переменных окружения
+  const ACCESS_KEY = import.meta.env.VITE_WEB3FORMS_ACCESS_KEY;
+
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    alert('Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.');
-    setFormData({
-      name: '',
-      email: '',
-      phone: '',
-      message: '',
-    });
+    
+    if (!ACCESS_KEY || ACCESS_KEY === 'your_access_key_here') {
+      alert('Ошибка: Web3Forms API ключ не настроен. Пожалуйста, настройте VITE_WEB3FORMS_ACCESS_KEY в .env.local');
+      return;
+    }
+
+    setIsSubmitting(true);
+    setSubmitStatus('idle');
+
+    try {
+      const response = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json',
+        },
+        body: JSON.stringify({
+          access_key: ACCESS_KEY,
+          subject: 'Новое сообщение с лендинга',
+          name: formData.name,
+          from_name: formData.name,
+          email: formData.email,
+          phone: formData.phone || 'Не указан',
+          message: `Имя: ${formData.name}\nEmail: ${formData.email}\nТелефон: ${formData.phone || 'Не указан'}\n\nСообщение:\n${formData.message}`,
+        }),
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitStatus('success');
+        setFormData({
+          name: '',
+          email: '',
+          phone: '',
+          message: '',
+        });
+        // Автоматически скрыть сообщение через 5 секунд
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      } else {
+        setSubmitStatus('error');
+        setTimeout(() => setSubmitStatus('idle'), 5000);
+      }
+    } catch (error) {
+      console.error('Ошибка при отправке формы:', error);
+      setSubmitStatus('error');
+      setTimeout(() => setSubmitStatus('idle'), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -42,6 +91,19 @@ export default function Contact() {
           <div className="bg-white rounded-xl p-8 border border-gray-200">
             <h3 className="text-2xl font-bold text-gray-900 mb-6">Форма обратной связи</h3>
             <form onSubmit={handleSubmit} className="space-y-4">
+              {/* Сообщения о статусе отправки */}
+              {submitStatus === 'success' && (
+                <div className="bg-green-50 border border-green-200 text-green-800 px-4 py-3 rounded-lg">
+                  Спасибо за ваше сообщение! Я свяжусь с вами в ближайшее время.
+                </div>
+              )}
+              
+              {submitStatus === 'error' && (
+                <div className="bg-red-50 border border-red-200 text-red-800 px-4 py-3 rounded-lg">
+                  Произошла ошибка при отправке. Пожалуйста, попробуйте еще раз или свяжитесь со мной напрямую.
+                </div>
+              )}
+
               <div>
                 <label htmlFor="name" className="block text-sm font-medium text-gray-900 mb-2">
                   Ваше имя
@@ -52,9 +114,10 @@ export default function Contact() {
                   name="name"
                   value={formData.name}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Иван Петров"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -67,9 +130,10 @@ export default function Contact() {
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="ivan@example.com"
                   required
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -82,8 +146,9 @@ export default function Contact() {
                   name="phone"
                   value={formData.phone}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="+7 (999) 123-45-67"
+                  disabled={isSubmitting}
                 />
               </div>
               <div>
@@ -95,13 +160,18 @@ export default function Contact() {
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none h-32"
+                  className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-600 focus:border-transparent outline-none h-32 disabled:opacity-50 disabled:cursor-not-allowed"
                   placeholder="Расскажите о вашем проекте..."
                   required
+                  disabled={isSubmitting}
                 />
               </div>
-              <button type="submit" className="w-full btn-primary text-center">
-                Отправить
+              <button 
+                type="submit" 
+                className="w-full btn-primary text-center disabled:opacity-50 disabled:cursor-not-allowed"
+                disabled={isSubmitting}
+              >
+                {isSubmitting ? 'Отправка...' : 'Отправить'}
               </button>
             </form>
           </div>
@@ -119,10 +189,10 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-gray-600">Email</p>
                     <a
-                      href="mailto:dmsob@ya.ru"
+                      href="mailto:info@dmsobconsulting.ru"
                       className="text-blue-600 font-medium hover:text-blue-700"
                     >
-                      dmsob@ya.ru
+                      info@dmsobconsulting.ru
                     </a>
                   </div>
                 </div>
@@ -134,7 +204,7 @@ export default function Contact() {
                   <div>
                     <p className="text-sm text-gray-600">Телефон</p>
                     <a
-                      href="tel:+79278959172"
+                      href="tel:+79179756318"
                       className="text-blue-600 font-medium hover:text-blue-700"
                     >
                       +7 (927) 895-91-72
