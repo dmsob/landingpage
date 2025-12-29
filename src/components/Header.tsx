@@ -4,7 +4,6 @@ const navItems = [
   { label: 'Обо мне', href: '#about' },
   { label: 'Услуги', href: '#services' },
   { label: 'Проекты', href: '#projects' },
-  { label: 'Отзывы', href: '#testimonials' },
   { label: 'Контакты', href: '#contact' },
 ];
 
@@ -65,9 +64,9 @@ export default function Header() {
           <img 
             src="/logo.png" 
             alt="IT Консультант - Логотип" 
-            className="h-16 w-auto object-contain"
+            className="h-20 w-auto object-contain"
           />
-          <span className="font-bold text-gray-900 brand-text hidden sm:block">IT Консультант</span>
+          <span className="font-bold text-gray-900 brand-text hidden sm:block">Системный аналитик</span>
         </div>
         
         {/* Desktop Navigation */}

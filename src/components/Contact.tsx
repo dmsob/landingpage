@@ -207,7 +207,7 @@ export default function Contact() {
                       href="tel:+79179756318"
                       className="text-blue-600 font-medium hover:text-blue-700"
                     >
-                      +7 (927) 895-91-72
+                      +7 (917) 975-63-18
                     </a>
                   </div>
                 </div>
